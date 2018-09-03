@@ -1,0 +1,61 @@
+<% include partials/header %>
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-6 mt-5 text-center my-auto">
+            <h2 class="mt-5">
+                <%= dog.name %>
+            </h2>
+            <div>
+                <span><a class="btn btn-sm btn-primary" href="/dogs/<%= dog._id %>/edit">Edit dog</a></span>
+                <form class="d-inline" id="delete" action="/dogs/<%= dog._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete dog</button>
+                </form>
+            </div>
+            <table class="table mt-3">
+                <tr>
+                    <td><b>Age:</b></td>
+                    <td><%= dog.age %></td>
+                </tr>
+                <tr>
+                    <td><b>Gender:</b></td>
+                    <% if (dog.gender == 1) { %>
+                    <td>
+                        Boy
+                    </td>
+                    <% } else { %>
+                    <td>
+                        Girl
+                    </td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td><b>Neutered:</b></td>
+                    <td>
+                        <%= dog.neutered %>
+                    </td>
+                </tr>
+            </table>
+            <h3>Description</h3>
+            <p>
+                <%= dog.description %>
+            </p>
+        </div>
+        
+        <div class="col-6 mt-5 text-center">
+            <img class="img-fluid mx-auto d-block" style="width: 400px" src="<%= dog.image %>">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12 mt-3">
+            <small class="text-center d-block">
+                Created At: <%= dog.created.toDateString() %>
+            </small>
+            <a class="btn btn-secondary" href="/dogs">Back to dogs</a>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>

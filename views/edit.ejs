@@ -1,0 +1,64 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row my-5">
+        <form action="/dogs/<%= dog._id %>?_method=PUT" method="POST">
+            <fieldset>
+                <legend>Edit <%= dog.name %></legend>
+                
+                <div class="form-group">
+                    <label class="col-form-label">Name</label>
+                    <input class="form-control" name="dog[name]" value="<%= dog.name %>" type="text" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-form-label">Age</label>
+                    <input class="form-control" name="dog[age]" value="<%= dog.age %>" type="text" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-form-label">Gender</label>
+                    <select class="custom-select" name="dog[gender]" value="<%= dog.gender %>" required>
+                        <option>Select gender</option>
+                        <option value=1 <%= dog.gender == '1' ? 'selected' : ''%> >Boy</option>
+                        <option value=2 <%= dog.gender == '2' ? 'selected' : ''%> >Girl</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-form-label">Neutered</label>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="dog[neutered]" id="dog-neutered-yes" value="true" <%= dog.neutered == true ? 'checked' : ''%> >
+                            <label class="form-check-label" for="dog-neutered-yes">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="dog[neutered]" id="dog-neutered-no" value="false" <%= dog.neutered == false ? 'checked' : ''%> >
+                            <label class="form-check-label" for="dog-neutered-no">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dog-description">Description</label>
+                    <textarea class="form-control" name="dog[description]" id="dog-description" rows="3" required><%= dog.description %>
+                    </textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-form-label">Image link</label>
+                    <input class="form-control" name="dog[image]" value="<%= dog.image %>" type="text" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <span><a class="btn btn-secondary" href="/dogs/<%= dog._id %>" >Cancel</a></span>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<% include partials/footer %>

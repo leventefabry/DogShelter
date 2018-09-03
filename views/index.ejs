@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+<div class="container">
+    
+    <div class="row my-4">
+        <a href="/dogs/new" class="btn btn-primary">Create dog</a>
+    </div>
+    
+    <div class="row my-4">
+        <% dogs.forEach(function(dog){ %>
+        <div class="col-lg-3">
+            <div class="card" style="width: 14rem;">
+                <img class="card-img-top" src="<%= dog.image %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><%= dog.name %></h5>
+                    <p class="card-text"><%= dog.description %></p>
+                    <a href="/dogs/<%= dog._id %>" class="btn btn-primary">Show more data</a>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<% include partials/footer %>
